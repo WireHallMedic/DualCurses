@@ -13,11 +13,15 @@ s#i0
 s#k0
 s#j0
 s#l0
-!91;g
+!134;g
+%\011WSFont_8x16.png
 %\011DualCurses%sDCPalette.java
 %\011DualCurses%sDCTile.java
 %\011DualCurses%sDCPanel.java
-!91;f
+%\011WSFont_16x16.png
+!134;f
+%\011WSFont_8x16.png
 %\011DualCurses%sDCPalette.java
 %\011DualCurses%sDCTile.java
 %\011DualCurses%sDCPanel.java
+%\011WSFont_16x16.png
