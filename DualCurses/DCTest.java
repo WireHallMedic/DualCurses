@@ -26,7 +26,7 @@ public class DCTest implements ActionListener
       frame.setSize(1000, 800);
       frame.setLayout(new GridLayout(1, 1));
       dcPanel = new DCPanel(ROWS, COLUMNS);
-      dcPanel.setPalette("WSFont_8x16.png", "WSFont_16x16.png", 16, 16);
+      dcPanel.setPalette("/WSFont_8x16.png", "/WSFont_16x16.png", 16, 16);
       dcPanel.setBackground(Color.BLACK);
       frame.add(dcPanel);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -44,7 +44,7 @@ public class DCPalette
    // create a tile array
    public void generateTiles(String imageFileName, DCTile[] tileArr)
    {
-      BufferedImage fullImage = loadImageFromFile(imageFileName);
+      BufferedImage fullImage = loadImage(imageFileName);
       int tileWidth = fullImage.getWidth() / columns;
       int tileHeight = fullImage.getHeight() / rows;
       for(int x = 0; x < columns; x++)
@@ -84,6 +84,19 @@ public class DCPalette
          e.printStackTrace(); 
       }
       throw new Error("Unable to create image " + fileName);
+   }
+   
+   private BufferedImage loadImage(String fileName)
+   {
+      try
+      {
+         return ImageIO.read(getClass().getResource(fileName));
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace(); 
+      }
+      throw new Error("Unable to load image " + fileName);
    }
    
    // get colored rect tile
