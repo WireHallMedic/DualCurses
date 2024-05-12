@@ -54,38 +54,7 @@ public class DCPalette
       }
    }
    
-   
-   // get URL of a resource
-   private URL loadResource(String fileName)
-   {
-      try
-      {
-         URL url = DCPalette.class.getClassLoader().getResource(fileName);
-         if(url == null)
-            throw new Exception("Could not find resource: " + fileName);
-         return url;
-      } 
-      catch(Exception e) 
-      {
-         e.printStackTrace(); 
-      }
-      throw new Error("Unable to load resource " + fileName);
-   }
-   
-   // load an image file
-   private BufferedImage loadImageFromFile(String fileName)
-   {
-      try
-      {
-         return ImageIO.read(loadResource(fileName));
-      }
-      catch(Exception e)
-      {
-         e.printStackTrace(); 
-      }
-      throw new Error("Unable to create image " + fileName);
-   }
-   
+   // load image from file
    private BufferedImage loadImage(String fileName)
    {
       try
