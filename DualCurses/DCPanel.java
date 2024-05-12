@@ -3,8 +3,9 @@ package DualCurses;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
+import java.awt.event.*;
 
-public class DCPanel extends JPanel
+public class DCPanel extends JPanel implements ComponentListener
 {
 	private DCPalette palette;
 	private BufferedImage bigImage;
@@ -49,6 +50,7 @@ public class DCPanel extends JPanel
       smallImage = null;
       emptyTile = null;
       changeWasMade = true;
+      addComponentListener(this);
    }
    
    public void setPalette(String rectImageFileName, String squareImageFileName, int rows_tall, int columns_wide)
@@ -61,8 +63,6 @@ public class DCPanel extends JPanel
       for(int x = 0; x < columns; x++)
       for(int y = 0; y < rows; y++)
          placeTile(x, y, emptyTile);
-      System.out.println("Column size: " + columnSize);
-      System.out.println("Row size: " + rowSize);
    }
    
    // places a tile on the small image
@@ -104,5 +104,14 @@ public class DCPanel extends JPanel
          Graphics2D g2d = (Graphics2D)g;
          g2d.drawImage(bigImage, 0, 0, null);
       }
+   }
+   
+   public void componentHidden(ComponentEvent e){}
+   public void componentMoved(ComponentEvent e){}
+   public void componentShown(ComponentEvent e){}
+   
+   public void componentResized(ComponentEvent e)
+   {
+      changeWasMade = true;
    }
 }
