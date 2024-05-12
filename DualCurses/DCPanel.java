@@ -1,6 +1,8 @@
 package DualCurses;
 
-public class DCPanel
+import javax.swing.*;
+
+public class DCPanel extends JPanel
 {
 
 }
