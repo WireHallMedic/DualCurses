@@ -75,7 +75,7 @@ public class DCPanel extends JPanel implements ComponentListener
    // scale the small image up
    public void createBigImage(int newWidth, int newHeight)
    {
-      Image scaledImage = smallImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+      Image scaledImage = smallImage.getScaledInstance(newWidth, newHeight, Image.SCALE_FAST);
       bigImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
       bigImage.createGraphics().drawImage(scaledImage, 0, 0, null);
    }
