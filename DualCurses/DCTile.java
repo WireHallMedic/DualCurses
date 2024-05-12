@@ -40,5 +40,25 @@ public class DCTile
    }
    
    public DCTile(BufferedImage img){this(img, DEFAULT_BACKGROUND_RGB);}
-
+   
+   // get tile in specified colors
+   public BufferedImage generateImage(Color fg, Color bg)
+   {
+      return generateImage(fg.getRGB(), bg.getRGB());
+   }
+   
+   // get tile in specified colors as RGB values
+   public BufferedImage generateImage(int fg, int bg)
+   {
+      BufferedImage newImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+      for(int x = 0; x < width; x++)
+      for(int y = 0; y < height; y++)
+      {
+         if(stencilArr[x][y])
+            newImg.setRGB(x, y, fg);
+         else
+            newImg.setRGB(x, y, bg);
+      }
+      return newImg;
+   }
 }
