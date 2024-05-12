@@ -54,6 +54,25 @@ public class DCPanel extends JPanel
    public void setPalette(String rectImageFileName, String squareImageFileName, int rows_tall, int columns_wide)
    {
       palette = new DCPalette(rectImageFileName, squareImageFileName, rows_tall, columns_wide);
+      emptyTile = palette.getRectTile(0, Color.BLACK.getRGB(), Color.BLACK.getRGB());
+      columnSize = emptyTile.getWidth();
+      rowSize = emptyTile.getHeight();
+      smallImage = new BufferedImage(columns * columnSize, rows * rowSize, BufferedImage.TYPE_INT_ARGB);
+   }
+   
+   // places a tile on the small image
+   public void placeTile(int x, int y, BufferedImage newTile)
+   {
+      smallImage.createGraphics().drawImage(newTile, x * columnSize, y * rowSize, null);
+      changeWasMade = true;
+   }
+   
+   // scale the small image up
+      public void createBigImage(int newWidth, int newHeight)
+   {
+      Image scaledImage = smallImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+      bigImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+      bigImage.createGraphics().drawImage(scaledImage, 0, 0, null);
    }
    
    @Override
