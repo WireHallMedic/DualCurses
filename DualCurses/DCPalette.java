@@ -1,6 +1,74 @@
 package DualCurses;
 
+import java.awt.*;
+import java.awt.image.*;
+import java.net.*;
+import java.io.*;
+import javax.imageio.*;
+
 public class DCPalette
 {
+   private DCTile[] rectTile;
+	private DCTile[] squareTile;
+	private int cols;
+	private int rows;
+   private BufferedImage squareFullImage;
+   private BufferedImage rectFullImage;
 
+
+	public DCTile[] getRectTile(){return rectTile;}
+	public DCTile[] getSquareTile(){return squareTile;}
+	public int getCols(){return cols;}
+	public int getRows(){return rows;}
+
+
+	public void setRectTile(DCTile[] r){rectTile = r;}
+	public void setSquareTile(DCTile[] s){squareTile = s;}
+	public void setCols(int c){cols = c;}
+	public void setRows(int r){rows = r;}
+
+   public DCPalette(String rectImageFileName, String squareImageFileName, int rows_tall, int columns_wide)
+   {
+      rows = rows_tall;
+      cols = columns_wide;
+      rectTile = new DCTile[cols * rows];
+      squareTile = new DCTile[cols * rows];
+   }
+   
+   public int flatten(int x, int y)
+   {
+      return x + (y * cols);
+   }
+   
+   
+   // get URL of a resource
+   public URL loadResource(String fileName)
+   {
+      try
+      {
+         URL url = DCPalette.class.getClassLoader().getResource(fileName);
+         if(url == null)
+            throw new Exception("Could not find resource: " + fileName);
+         return url;
+      } 
+      catch(Exception e) 
+      {
+         e.printStackTrace(); 
+      }
+      throw new Error("Unable to load resource " + fileName);
+   }
+   
+   // load an image file
+   public BufferedImage loadImageFromFile(String fileName)
+   {
+      try
+      {
+         return ImageIO.read(loadResource(fileName));
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace(); 
+      }
+      throw new Error("Unable to create image " + fileName);
+   }
 }
