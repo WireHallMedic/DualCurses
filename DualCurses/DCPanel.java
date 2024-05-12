@@ -61,6 +61,8 @@ public class DCPanel extends JPanel
       for(int x = 0; x < columns; x++)
       for(int y = 0; y < rows; y++)
          placeTile(x, y, emptyTile);
+      System.out.println("Column size: " + columnSize);
+      System.out.println("Row size: " + rowSize);
    }
    
    // places a tile on the small image
@@ -82,6 +84,7 @@ public class DCPanel extends JPanel
    {
       setRectTile(x, y, palette.flatten(paletteX, paletteY), fgColor, bgColor);
    }
+   
    public void setRectTile(int x, int y, int index, int fgColor, int bgColor)
    {
       placeTile(x, y, palette.getRectTile(index, fgColor, bgColor));
@@ -90,6 +93,7 @@ public class DCPanel extends JPanel
    @Override
    public void paint(Graphics g)
    {
+      super.paint(g);
       if(smallImage != null)
       {
          if(changeWasMade)
@@ -100,6 +104,5 @@ public class DCPanel extends JPanel
          Graphics2D g2d = (Graphics2D)g;
          g2d.drawImage(bigImage, 0, 0, null);
       }
-      super.paint(g);
    }
 }
