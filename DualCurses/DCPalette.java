@@ -85,4 +85,10 @@ public class DCPalette
       }
       throw new Error("Unable to create image " + fileName);
    }
+   
+   // simple test
+   public static void main(String[] args)
+   {
+      DCPalette palette = new DCPalette("WSFont_8x16.png", "WSFont_16x16.png", 16, 16);
+   }
 }
