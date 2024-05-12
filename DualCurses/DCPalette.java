@@ -12,8 +12,6 @@ public class DCPalette
 	private DCTile[] squareTile;
 	private int cols;
 	private int rows;
-   private BufferedImage squareFullImage;
-   private BufferedImage rectFullImage;
 
 
 	public DCTile[] getRectTile(){return rectTile;}
@@ -33,16 +31,32 @@ public class DCPalette
       cols = columns_wide;
       rectTile = new DCTile[cols * rows];
       squareTile = new DCTile[cols * rows];
+      generateTiles(rectImageFileName, rectTile);
+      generateTiles(squareImageFileName, squareTile);
    }
    
+   // turn Cartesian index into linear index
    public int flatten(int x, int y)
    {
       return x + (y * cols);
    }
    
+   // create a tile array
+   public void generateTiles(String imageFileName, DCTile[] tileArr)
+   {
+      BufferedImage fullImage = loadImageFromFile(imageFileName);
+      int tileWidth = fullImage.getWidth() / cols;
+      int tileHeight = fullImage.getHeight() / rows;
+      for(int x = 0; x < cols; x++)
+      for(int y = 0; y < rows; y++)
+      {
+         tileArr[flatten(x, y)] = new DCTile(fullImage.getSubimage(x * tileWidth, y * tileHeight, tileWidth, tileHeight));
+      }
+   }
+   
    
    // get URL of a resource
-   public URL loadResource(String fileName)
+   private URL loadResource(String fileName)
    {
       try
       {
@@ -59,7 +73,7 @@ public class DCPalette
    }
    
    // load an image file
-   public BufferedImage loadImageFromFile(String fileName)
+   private BufferedImage loadImageFromFile(String fileName)
    {
       try
       {
