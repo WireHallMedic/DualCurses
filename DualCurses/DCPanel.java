@@ -58,6 +58,9 @@ public class DCPanel extends JPanel
       columnSize = emptyTile.getWidth();
       rowSize = emptyTile.getHeight();
       smallImage = new BufferedImage(columns * columnSize, rows * rowSize, BufferedImage.TYPE_INT_ARGB);
+      for(int x = 0; x < columns; x++)
+      for(int y = 0; y < rows; y++)
+         placeTile(x, y, emptyTile);
    }
    
    // places a tile on the small image
@@ -68,11 +71,20 @@ public class DCPanel extends JPanel
    }
    
    // scale the small image up
-      public void createBigImage(int newWidth, int newHeight)
+   public void createBigImage(int newWidth, int newHeight)
    {
       Image scaledImage = smallImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
       bigImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
       bigImage.createGraphics().drawImage(scaledImage, 0, 0, null);
+   }
+   
+   public void setRectTile(int x, int y, int paletteX, int paletteY, int fgColor, int bgColor)
+   {
+      setRectTile(x, y, palette.flatten(paletteX, paletteY), fgColor, bgColor);
+   }
+   public void setRectTile(int x, int y, int index, int fgColor, int bgColor)
+   {
+      placeTile(x, y, palette.getRectTile(index, fgColor, bgColor));
    }
    
    @Override
@@ -80,7 +92,13 @@ public class DCPanel extends JPanel
    {
       if(smallImage != null)
       {
-         
+         if(changeWasMade)
+         {
+            createBigImage(this.getWidth(), this.getHeight());
+            changeWasMade = false;
+         }
+         Graphics2D g2d = (Graphics2D)g;
+         g2d.drawImage(bigImage, 0, 0, null);
       }
       super.paint(g);
    }

@@ -1,5 +1,5 @@
 !1689;s
-A
+J
 SAU0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
 SCU0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
 S+U0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
@@ -13,15 +13,17 @@ s#i0
 s#k0
 s#j0
 s#l0
-!134;g
+!163;g
 %\011WSFont_8x16.png
 %\011DualCurses%sDCPalette.java
 %\011DualCurses%sDCTile.java
 %\011DualCurses%sDCPanel.java
 %\011WSFont_16x16.png
-!134;f
+%\011DualCurses%sDCTest.java
+!163;f
 %\011WSFont_8x16.png
 %\011DualCurses%sDCPalette.java
 %\011DualCurses%sDCTile.java
 %\011DualCurses%sDCPanel.java
 %\011WSFont_16x16.png
+%\011DualCurses%sDCTest.java
