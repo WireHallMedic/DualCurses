@@ -13,7 +13,7 @@ public class DCTest implements ActionListener
    private int cursorX;
    private int cursorY;
    private static final int COLUMNS = 120;
-   private static final int ROWS = 48;
+   private static final int ROWS = 36;
    private static final int[] COLOR_ARR = {
       Color.BLACK.getRGB(), Color.BLUE.getRGB(), Color.CYAN.getRGB(), Color.DARK_GRAY.getRGB(), Color.GRAY.getRGB(), Color.GREEN.getRGB(), 
       Color.LIGHT_GRAY.getRGB(), Color.MAGENTA.getRGB(), Color.ORANGE.getRGB(), Color.PINK.getRGB(), Color.RED.getRGB(), Color.WHITE.getRGB(), 
