@@ -25,7 +25,7 @@ public class DCTest implements ActionListener
       frame = new JFrame();
       frame.setSize(1000, 800);
       frame.setLayout(new GridLayout(1, 1));
-      dcPanel = new DCPanel(ROWS, COLUMNS);
+      dcPanel = new DCPanel(COLUMNS, ROWS);
       dcPanel.setPalette("/WSFont_8x16.png", "/WSFont_16x16.png", 16, 16);
       dcPanel.setBackground(Color.BLACK);
       frame.add(dcPanel);
@@ -33,7 +33,7 @@ public class DCTest implements ActionListener
       for(int x = 0; x < COLUMNS; x++)
       for(int y = 0; y < ROWS; y++)
          dcPanel.setRectTile(x, y, '@', Color.CYAN.getRGB(), Color.BLACK.getRGB());
-      dcPanel.setSquareTile(20, 20, '!', Color.BLACK.getRGB(), Color.WHITE.getRGB());
+      dcPanel.setSquareTile(20, 4, '!', Color.BLACK.getRGB(), Color.WHITE.getRGB());
       frame.setVisible(true);
       rng = new Random();
       timer = new javax.swing.Timer(16, this);

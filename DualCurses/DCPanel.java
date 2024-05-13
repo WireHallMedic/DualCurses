@@ -42,7 +42,7 @@ public class DCPanel extends JPanel implements ComponentListener
 	public void setRowSize(int r){rowSize = r;}
 
 
-   public DCPanel(int rowsTall, int columnsWide)
+   public DCPanel(int columnsWide, int rowsTall)
    {
       super();
       palette = null;
@@ -55,7 +55,7 @@ public class DCPanel extends JPanel implements ComponentListener
       addComponentListener(this);
    }
    
-   public void setPalette(String rectImageFileName, String squareImageFileName, int rows_tall, int columns_wide)
+   public void setPalette(String rectImageFileName, String squareImageFileName, int columns_wide, int rows_tall)
    {
       palette = new DCPalette(rectImageFileName, squareImageFileName, rows_tall, columns_wide);
       emptyTile = palette.getRectTile(0, Color.BLACK.getRGB(), Color.BLACK.getRGB());
