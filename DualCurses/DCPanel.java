@@ -106,6 +106,25 @@ public class DCPanel extends JPanel implements ComponentListener
       placeTile(x, y, palette.getSquareTile(index, fgColor, bgColor));
    }
    
+   public void write(int xStart, int yStart, String str, int fgColor, int bgColor)
+   {
+      boolean defaultBGF = bgColor == defaultBGColor;
+      int charVal = ' ';
+      for(int x = 0; x < str.length(); x++)
+      {
+         charVal = str.charAt(x);
+         if(defaultBGF && charVal == ' ')
+            placeTile(xStart + x, yStart, emptyTile);
+         else
+            setRectTile(xStart + x, yStart, charVal, fgColor, bgColor);
+      }
+   }
+   
+   public void write(int xStart, int yStart, String str, int fgColor)
+   {
+      write(xStart, yStart, str, fgColor, defaultBGColor);
+   }
+   
    // the big image is the full height of the panel, but must maintain ratio
    private void calcBigImageSize()
    {

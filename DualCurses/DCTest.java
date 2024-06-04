@@ -34,6 +34,7 @@ public class DCTest implements ActionListener
       for(int y = 0; y < ROWS; y++)
          dcPanel.setRectTile(x, y, '@', Color.CYAN.getRGB(), Color.BLACK.getRGB());
       dcPanel.setSquareTile(20, 4, '!', Color.BLACK.getRGB(), Color.WHITE.getRGB());
+      dcPanel.write(5, 6, " Testing writing stuff here ", Color.YELLOW.getRGB());
       frame.setVisible(true);
       rng = new Random();
       timer = new javax.swing.Timer(16, this);
