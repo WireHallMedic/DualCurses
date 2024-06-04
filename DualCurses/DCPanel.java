@@ -11,6 +11,7 @@ public class DCPanel extends JPanel implements ComponentListener
 	private BufferedImage bigImage;
 	private BufferedImage smallImage;
    private BufferedImage emptyTile;
+   private int defaultBGColor;
 	private boolean changeWasMade;
 	private int columns;
 	private int rows;
@@ -24,6 +25,7 @@ public class DCPanel extends JPanel implements ComponentListener
 	public BufferedImage getBigImage(){return bigImage;}
 	public BufferedImage getSmallImage(){return smallImage;}
    public BufferedImage getEmptyTile(){return emptyTile;}
+   public int getDefaultGBColor(){return defaultBGColor;}
 	public boolean changeWasMade(){return changeWasMade;}
 	public int getColumns(){return columns;}
 	public int getRows(){return rows;}
@@ -35,6 +37,7 @@ public class DCPanel extends JPanel implements ComponentListener
 	public void setBigImage(BufferedImage b){bigImage = b;}
 	public void setSmallImage(BufferedImage s){smallImage = s;}
    public void setEmptyTile(BufferedImage e){emptyTile = e;}
+   public void setDefaultBGColor(int rgb){defaultBGColor = rgb;}
 	public void setChangeWasMade(boolean c){changeWasMade = c;}
 	public void setColumns(int c){columns = c;}
 	public void setRows(int r){rows = r;}
@@ -51,6 +54,7 @@ public class DCPanel extends JPanel implements ComponentListener
       bigImage = null;
       smallImage = null;
       emptyTile = null;
+      defaultBGColor = Color.BLACK.getRGB();
       changeWasMade = true;
       addComponentListener(this);
    }
@@ -58,7 +62,7 @@ public class DCPanel extends JPanel implements ComponentListener
    public void setPalette(String rectImageFileName, String squareImageFileName, int columns_wide, int rows_tall)
    {
       palette = new DCPalette(rectImageFileName, squareImageFileName, rows_tall, columns_wide);
-      emptyTile = palette.getRectTile(0, Color.BLACK.getRGB(), Color.BLACK.getRGB());
+      emptyTile = palette.getRectTile(0, defaultBGColor, defaultBGColor);
       columnSize = emptyTile.getWidth();
       rowSize = emptyTile.getHeight();
       smallImage = new BufferedImage(columns * columnSize, rows * rowSize, BufferedImage.TYPE_INT_ARGB);
