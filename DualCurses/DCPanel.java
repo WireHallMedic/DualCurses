@@ -18,7 +18,9 @@ public class DCPanel extends JPanel implements ComponentListener
 	private int columnSize;
 	private int rowSize;
    private int bigImageWidth;
+   private int bigImageHeight;
    private int bigImageXInset;
+   private int bigImageYInset;
 
 
 	public DCPalette getPalette(){return palette;}
@@ -129,7 +131,11 @@ public class DCPanel extends JPanel implements ComponentListener
    private void calcBigImageSize()
    {
       bigImageWidth = (smallImage.getWidth() * this.getHeight()) / smallImage.getHeight();
+      if(bigImageWidth > this.getWidth())
+         bigImageWidth = this.getWidth();
+      bigImageHeight = (smallImage.getHeight() * bigImageWidth) / smallImage.getWidth();
       bigImageXInset = (this.getWidth() - bigImageWidth) / 2;
+      bigImageYInset = (this.getHeight() - bigImageHeight) / 2;
    }
    
    @Override
@@ -141,11 +147,11 @@ public class DCPanel extends JPanel implements ComponentListener
          if(changeWasMade)
          {
             calcBigImageSize();
-            createBigImage(bigImageWidth, this.getHeight());
+            createBigImage(bigImageWidth, bigImageHeight);
             changeWasMade = false;
          }
          Graphics2D g2d = (Graphics2D)g;
-         g2d.drawImage(bigImage, bigImageXInset, 0, null);
+         g2d.drawImage(bigImage, bigImageXInset, bigImageYInset, null);
       }
    }
    
