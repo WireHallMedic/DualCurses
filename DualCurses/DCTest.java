@@ -60,8 +60,10 @@ public class DCTest implements ActionListener
       int writeInsetX = dcPanel.getColumns() - 3;
       dcPanel.write(writeInsetX, 0, "   ", Color.WHITE.getRGB());
       dcPanel.write(writeInsetX, 1, "   ", Color.WHITE.getRGB());
-      dcPanel.write(writeInsetX, 0, "" + dcPanel.getMouseLoc()[0], Color.WHITE.getRGB());
-      dcPanel.write(writeInsetX, 1, "" + dcPanel.getMouseLoc()[1], Color.WHITE.getRGB());
+      DCString str = new DCString("" + dcPanel.getMouseLoc()[0], Color.YELLOW.getRGB(), Color.DARK_GRAY.getRGB());
+      dcPanel.write(writeInsetX, 0, str);
+      str.setText("" + dcPanel.getMouseLoc()[1]);
+      dcPanel.write(writeInsetX, 1, str);
       dcPanel.repaint();
    }
    

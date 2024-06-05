@@ -129,6 +129,11 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       write(xStart, yStart, str, fgColor, defaultBGColor);
    }
    
+   public void write(int xStart, int yStart, DCString str)
+   {
+      write(xStart, yStart, str.getText(), str.getFGColor(), str.getBGColor());
+   }
+   
    // the big image is the full height of the panel, but must maintain ratio
    private void calcBigImageSize()
    {

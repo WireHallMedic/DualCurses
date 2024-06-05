@@ -14,17 +14,19 @@ s#k0
 s#j0
 s#l0
 !132;u
-a0	b68	c255	f%\011DualCurses.jar	g%\011DualCurses.zip	hManifest-Version\0111.0\011Main-Class\011DualCurses.DCTest	iDualCurses.DCTest!163;g
+a0	b68	c255	f%\011DualCurses.jar	g%\011DualCurses.zip	hManifest-Version\0111.0\011Main-Class\011DualCurses.DCTest	iDualCurses.DCTest!194;g
 %\011WSFont_8x16.png
 %\011DualCurses%sDCPalette.java
 %\011DualCurses%sDCTile.java
+%\011DualCurses%sDCString.java
 %\011DualCurses%sDCPanel.java
 %\011WSFont_16x16.png
 %\011DualCurses%sDCTest.java
-!163;f
+!194;f
 %\011WSFont_8x16.png
 %\011DualCurses%sDCPalette.java
 %\011DualCurses%sDCTile.java
+%\011DualCurses%sDCString.java
 %\011DualCurses%sDCPanel.java
 %\011WSFont_16x16.png
 %\011DualCurses%sDCTest.java
