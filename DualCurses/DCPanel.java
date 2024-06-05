@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
 
-public class DCPanel extends JPanel implements ComponentListener
+public class DCPanel extends JPanel implements ComponentListener, MouseMotionListener
 {
 	private DCPalette palette;
 	private BufferedImage bigImage;
@@ -21,6 +21,7 @@ public class DCPanel extends JPanel implements ComponentListener
    private int bigImageHeight;
    private int bigImageXInset;
    private int bigImageYInset;
+   private int[] mouseLoc = {-1, -1};
 
 
 	public DCPalette getPalette(){return palette;}
@@ -59,6 +60,7 @@ public class DCPanel extends JPanel implements ComponentListener
       defaultBGColor = Color.BLACK.getRGB();
       changeWasMade = true;
       addComponentListener(this);
+      addMouseMotionListener(this);
    }
    
    public void setPalette(String rectImageFileName, String squareImageFileName, int columns_wide, int rows_tall)
@@ -138,6 +140,14 @@ public class DCPanel extends JPanel implements ComponentListener
       bigImageYInset = (this.getHeight() - bigImageHeight) / 2;
    }
    
+   public int[] getMouseLoc()
+   {
+      int[] cl = new int[2];
+      cl[0] = mouseLoc[0];
+      cl[1] = mouseLoc[1];
+      return cl;
+   }
+   
    @Override
    public void paint(Graphics g)
    {
@@ -162,5 +172,23 @@ public class DCPanel extends JPanel implements ComponentListener
    public void componentResized(ComponentEvent e)
    {
       changeWasMade = true;
+   }
+   
+   public void mouseDragged(MouseEvent me){}
+   public void mouseMoved(MouseEvent me)
+   {
+      int xLoc = me.getX() - bigImageXInset;
+      int yLoc = me.getY() - bigImageYInset;
+      if(xLoc < 0 || xLoc > bigImage.getWidth() ||
+         yLoc < 0 || yLoc > bigImage.getHeight())
+      {
+         mouseLoc[0] = -1;
+         mouseLoc[1] = -1;
+      }
+      else
+      {
+         mouseLoc[0] = (int)((double)xLoc / ((double)bigImage.getWidth() / (double)columns));
+         mouseLoc[1] = (int)((double)yLoc / ((double)bigImage.getHeight() / (double)rows));
+      }
    }
 }
