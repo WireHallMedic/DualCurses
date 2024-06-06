@@ -44,4 +44,16 @@ public class DCString
    {
       return length() == 1 && text.charAt(0) == '\n';
    }
+   
+   public boolean hasTrailingSpace()
+   {
+      return length() > 0 && text.charAt(length() - 1) == ' ';
+   }
+   
+   public String getTrimmedText()
+   {
+      if(hasTrailingSpace())
+         return text.substring(0, length() - 1);
+      return getText();
+   }
 }
