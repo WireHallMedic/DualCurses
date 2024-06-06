@@ -69,7 +69,6 @@ public class DCTextArea
    
    public void write(DCPanel panel)
    {
-      System.out.println(origin[0] + ", " + origin[1] + " / " + width + ", " + height);
       while(cursorLoc[1] < height)
          finishLine();
       for(int x = 0; x < width; x++)
@@ -144,6 +143,11 @@ public class DCTextArea
       return strVect;
    }
    
+   public void append(String input)
+   {
+      append(new DCString(input));
+   }
+   
    public void append(DCString input)
    {
       Vector<DCString> strList = split(input);
@@ -156,9 +160,10 @@ public class DCTextArea
             put(curString);
          }
          // room for trimmed string
-         else if(curString.hasTrailingSpace() && curString.length() == remainingSpace() - 1)
+         else if(curString.hasTrailingSpace() && curString.length() == remainingSpace() + 1)
          {
             curString.setText(curString.getText().substring(0, curString.getText().length() - 1));
+            put(curString);
             finishLine();
          }
          // room on next line
