@@ -11,6 +11,7 @@ public class DCTextArea
 	private char[][] charMap;
 	private int[][] fgMap;
 	private int[][] bgMap;
+   private int defaultBGColor;
 
 
 	public int[] getOrigin(){return origin;}
@@ -20,6 +21,7 @@ public class DCTextArea
 	public char[][] getCharMap(){return charMap;}
 	public int[][] getFgMap(){return fgMap;}
 	public int[][] getBgMap(){return bgMap;}
+   public int getDefaultBGColor(){return defaultBGColor;}
 
 
 	public void setOrigin(int[] o){origin = o;}
@@ -29,6 +31,7 @@ public class DCTextArea
 	public void setCharMap(char[][] c){charMap = c;}
 	public void setFgMap(int[][] f){fgMap = f;}
 	public void setBgMap(int[][] b){bgMap = b;}
+   public void setDefaultBGColor(int dbgc){defaultBGColor = dbgc;}
 
 
    public DCTextArea(int xOrigin, int yOrigin, int _width, int _height)
@@ -38,6 +41,7 @@ public class DCTextArea
       charMap = new char[width][height];
       fgMap = new int[width][height];
       bgMap = new int[width][height];
+      defaultBGColor = Color.BLACK.getRGB();
    }
    
    public void carriageReturn()
@@ -58,6 +62,20 @@ public class DCTextArea
       for(int y = 0; y < height; y++)
       {
          panel.setRectTile(origin[0] + x, origin[1] + y, charMap[x][y], charMap[x][y], charMap[x][y]);
+      }
+   }
+   
+   public void put(DCString str)
+   {
+      int bg = str.getBGColor();
+      int fg = str.getFGColor();
+      String text = str.getText();
+      for(int i = 0; i < str.length(); i++)
+      {
+         charMap[cursorLoc[0]][cursorLoc[1]] = text.charAt(i);
+         fgMap[cursorLoc[0]][cursorLoc[1]] = fg;
+         bgMap[cursorLoc[0]][cursorLoc[1]] = bg;
+         cursorLoc[0]++;
       }
    }
 
