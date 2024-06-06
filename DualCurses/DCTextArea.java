@@ -80,6 +80,8 @@ public class DCTextArea
    
    public void put(DCString str)
    {
+      if(cursorLoc[1] >= height)
+         return;
       if(str.isNewline())
       {
          finishLine();
@@ -94,6 +96,11 @@ public class DCTextArea
          fgMap[cursorLoc[0]][cursorLoc[1]] = fg;
          bgMap[cursorLoc[0]][cursorLoc[1]] = bg;
          cursorLoc[0]++;
+      }
+      if(cursorLoc[0] == width)
+      {
+         cursorLoc[0] = 0;
+         cursorLoc[1]++;
       }
    }
    
@@ -175,8 +182,9 @@ public class DCTextArea
          // need to hyphenate
          else
          {
-            finishLine();
-            String remainder = curString.getText().substring(width - 1);
+            if(cursorLoc[0] > 0)
+               finishLine();
+            String remainder = curString.getText().substring(width);
             curString.setText(curString.getText().substring(0, remainder.length()) + "-");
             put(curString);
             strList.add(i + 1, new DCString(remainder, curString.getFGColor(), curString.getBGColor()));

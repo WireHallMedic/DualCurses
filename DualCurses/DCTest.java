@@ -51,6 +51,7 @@ public class DCTest implements ActionListener
       textArea.write(dcPanel);
       
       textArea = new DCTextArea(35, 10, 10, 10);
+      textArea.append("Blargapottamousing.");
       textArea.write(dcPanel);
       
       frame.setVisible(true);
