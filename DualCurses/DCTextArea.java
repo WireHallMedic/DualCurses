@@ -171,7 +171,6 @@ public class DCTextArea
          {
             curString.setText(curString.getText().substring(0, curString.getText().length() - 1));
             put(curString);
-            finishLine();
          }
          // room on next line
          else if(curString.length() <= width)
