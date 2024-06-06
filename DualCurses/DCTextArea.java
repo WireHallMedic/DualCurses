@@ -51,5 +51,14 @@ public class DCTextArea
       return x > 0 && x < width &&
          y > 0 && y < height;
    }
+   
+   public void write(DCPanel panel)
+   {
+      for(int x = 0; x < width; x++)
+      for(int y = 0; y < height; y++)
+      {
+         panel.setRectTile(origin[0] + x, origin[1] + y, charMap[x][y], charMap[x][y], charMap[x][y]);
+      }
+   }
 
 }
