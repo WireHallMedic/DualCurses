@@ -10,13 +10,25 @@ public class DCStringTest {
 
 
    /** Fixture initialization (common initialization for all tests). **/
-   @Before public void setUp() {
+   @Before public void setUp(){}
+
+   @Test public void newlineTest() 
+   {
+      DCString dcStr = new DCString("\n");
+      Assert.assertTrue("Newline recognized", dcStr.isNewline());
+      dcStr.setText("\n ");
+      Assert.assertFalse("Newline with trailing not recognized", dcStr.isNewline());
+      dcStr.setText("x");
+      Assert.assertFalse("Non-newline not recognized", dcStr.isNewline());
    }
 
-
-   /** A test that always fails. **/
-   @Test public void defaultTest() {
-      Assert.assertEquals("Default test added by jGRASP. Delete "
-            + "this test once you have added your own.", 0, 1);
+   @Test public void trailingSpaceTest() 
+   {
+      DCString dcStr = new DCString(" pants");
+      Assert.assertFalse("No trailing space returns false", dcStr.hasTrailingSpace());
+      Assert.assertTrue("No trailing space returns full text", dcStr.getTrimmedText().equals(" pants"));
+      dcStr.setText("pants ");
+      Assert.assertTrue("Trailing space returns true", dcStr.hasTrailingSpace());
+      Assert.assertTrue("Trailing space returns trimmed text", dcStr.getTrimmedText().equals("pants"));
    }
 }
