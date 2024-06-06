@@ -67,6 +67,11 @@ public class DCTextArea
    
    public void put(DCString str)
    {
+      if(str.isNewline())
+      {
+         finishLine();
+         return;
+      }
       int bg = str.getBGColor();
       int fg = str.getFGColor();
       String text = str.getText();
@@ -77,6 +82,19 @@ public class DCTextArea
          bgMap[cursorLoc[0]][cursorLoc[1]] = bg;
          cursorLoc[0]++;
       }
+   }
+   
+   public void finishLine()
+   {
+      for(int x = cursorLoc[0]; x < width - 1; x++)
+      {
+         charMap[cursorLoc[0]][cursorLoc[1]] = ' ';
+         fgMap[cursorLoc[0]][cursorLoc[1]] = defaultBGColor;
+         bgMap[cursorLoc[0]][cursorLoc[1]] = defaultBGColor;
+         cursorLoc[0]++;
+      }
+      cursorLoc[0] = 0;
+      cursorLoc[1]++;
    }
 
 }

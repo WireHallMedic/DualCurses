@@ -39,4 +39,9 @@ public class DCString
    {
       return text.length();
    }
+   
+   public boolean isNewline()
+   {
+      return length() == 1 && text.charAt(0) == '\n';
+   }
 }
