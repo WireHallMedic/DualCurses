@@ -19,6 +19,9 @@ public class DCTest implements ActionListener
       Color.LIGHT_GRAY.getRGB(), Color.MAGENTA.getRGB(), Color.ORANGE.getRGB(), Color.PINK.getRGB(), Color.RED.getRGB(), Color.WHITE.getRGB(), 
       Color.YELLOW.getRGB()};
    private Random rng;
+   private long lastSecondStart;
+   private int frames;
+   private int fps;
    
    public DCTest()
    {
@@ -62,8 +65,15 @@ public class DCTest implements ActionListener
       
       frame.setVisible(true);
       rng = new Random();
-      timer = new javax.swing.Timer(16, this);
+      timer = new javax.swing.Timer(1000 / 60, this);
       timer.start();
+   }
+   
+   private void resetFrameCount()
+   {
+      fps = frames;
+      frames = 0;
+      lastSecondStart = System.currentTimeMillis();
    }
    
    private int randomColor()
@@ -73,6 +83,9 @@ public class DCTest implements ActionListener
    
    public void actionPerformed(ActionEvent ae)
    {
+      if(System.currentTimeMillis() - lastSecondStart >= 1000)
+         resetFrameCount();
+      frames++;
       dcPanel.setRectTile(cursorX, cursorY, rng.nextInt(256), randomColor(), randomColor());
       cursorX++;
       if(cursorX == COLUMNS)
@@ -85,6 +98,7 @@ public class DCTest implements ActionListener
       int writeInsetX = dcPanel.getColumns() - 3;
       dcPanel.write(writeInsetX, 0, "   ", Color.WHITE.getRGB());
       dcPanel.write(writeInsetX, 1, "   ", Color.WHITE.getRGB());
+      dcPanel.write(writeInsetX - 4, 2, String.format("FPS:%3d", fps), Color.WHITE.getRGB());
       DCString str = new DCString("" + dcPanel.getMouseLoc()[0], Color.YELLOW.getRGB(), Color.DARK_GRAY.getRGB());
       dcPanel.write(writeInsetX, 0, str);
       str.setText("" + dcPanel.getMouseLoc()[1]);
