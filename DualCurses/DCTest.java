@@ -65,7 +65,7 @@ public class DCTest implements ActionListener
       
       frame.setVisible(true);
       rng = new Random();
-      timer = new javax.swing.Timer(1000 / 60, this);
+      timer = new javax.swing.Timer(1, this);
       timer.start();
    }
    

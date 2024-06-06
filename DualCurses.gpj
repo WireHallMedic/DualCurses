@@ -35,7 +35,7 @@ a0	b68	c255	f%\011DualCurses.jar	g%\011DualCurses.zip	hManifest-Version\0111.0\0
 !72;l
 %\011DualCurses%sDCTextAreaTest.java
 %\011DualCurses%sDCStringTest.java
-!151;t
-jgrJUnit0xr	%\011DualCurses%sDCString.java	1717680728104:P%\011DCStringTest.java	%\011DualCurses%sDCStringTest.java	1717680728104:P%\011DCString.java	
+!297;t
+jgrJUnit0xr	%\011DualCurses%sDCString.java	1717680728104:P%\011DCStringTest.java	%\011DualCurses%sDCTextAreaTest.java	1717686327453:P%\011DCTextArea.java	%\011DualCurses%sDCStringTest.java	1717680728104:P%\011DCString.java	%\011DualCurses%sDCTextArea.java	1717686327453:P%\011DCTextAreaTest.java	
 !31;m
 RunSelect	DualCurses.DCPalette

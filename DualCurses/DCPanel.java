@@ -2,6 +2,7 @@ package DualCurses;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.*;
 import java.awt.image.*;
 import java.awt.event.*;
 
@@ -184,16 +185,16 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
    {
       int xLoc = me.getX() - bigImageXInset;
       int yLoc = me.getY() - bigImageYInset;
-      if(xLoc < 0 || xLoc > bigImage.getWidth() ||
-         yLoc < 0 || yLoc > bigImage.getHeight())
+      if(xLoc < 0 || xLoc > bigImageWidth ||
+         yLoc < 0 || yLoc > bigImageHeight)
       {
          mouseLoc[0] = -1;
          mouseLoc[1] = -1;
       }
       else
       {
-         mouseLoc[0] = (int)((double)xLoc / ((double)bigImage.getWidth() / (double)columns));
-         mouseLoc[1] = (int)((double)yLoc / ((double)bigImage.getHeight() / (double)rows));
+         mouseLoc[0] = (int)((double)xLoc / ((double)bigImageWidth / (double)columns));
+         mouseLoc[1] = (int)((double)yLoc / ((double)bigImageHeight / (double)rows));
       }
    }
 }
