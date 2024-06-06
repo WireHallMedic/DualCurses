@@ -32,3 +32,5 @@ a0	b68	c255	f%\011DualCurses.jar	g%\011DualCurses.zip	hManifest-Version\0111.0\0
 %\011WSFont_16x16.png
 %\011DualCurses%sDCTextArea.java
 %\011DualCurses%sDCTest.java
+!35;l
+%\011DualCurses%sDCStringTest.java
