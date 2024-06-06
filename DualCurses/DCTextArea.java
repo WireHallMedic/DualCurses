@@ -42,6 +42,8 @@ public class DCTextArea
    {
       width = _width;
       height = _height;
+      origin[0] = xOrigin;
+      origin[1] = yOrigin;
       charMap = new char[width][height];
       fgMap = new int[width][height];
       bgMap = new int[width][height];
@@ -67,10 +69,13 @@ public class DCTextArea
    
    public void write(DCPanel panel)
    {
+      System.out.println(origin[0] + ", " + origin[1] + " / " + width + ", " + height);
+      while(cursorLoc[1] < height)
+         finishLine();
       for(int x = 0; x < width; x++)
       for(int y = 0; y < height; y++)
       {
-         panel.setRectTile(origin[0] + x, origin[1] + y, charMap[x][y], charMap[x][y], charMap[x][y]);
+         panel.setRectTile(origin[0] + x, origin[1] + y, charMap[x][y], fgMap[x][y], bgMap[x][y]);
       }
    }
    
@@ -95,7 +100,7 @@ public class DCTextArea
    
    public void finishLine()
    {
-      for(int x = cursorLoc[0]; x < width - 1; x++)
+      for(int x = cursorLoc[0]; x < width; x++)
       {
          charMap[cursorLoc[0]][cursorLoc[1]] = ' ';
          fgMap[cursorLoc[0]][cursorLoc[1]] = defaultBGColor;
@@ -144,10 +149,33 @@ public class DCTextArea
       Vector<DCString> strList = split(input);
       for(int i = 0; i < strList.size(); i++)
       {
+         DCString curString = strList.elementAt(i);
          // room for string
+         if(curString.length() <= remainingSpace())
+         {
+            put(curString);
+         }
          // room for trimmed string
+         else if(curString.hasTrailingSpace() && curString.length() == remainingSpace() - 1)
+         {
+            curString.setText(curString.getText().substring(0, curString.getText().length() - 1));
+            finishLine();
+         }
          // room on next line
+         else if(curString.length() <= width)
+         {
+            finishLine();
+            put(curString);
+         }
          // need to hyphenate
+         else
+         {
+            finishLine();
+            String remainder = curString.getText().substring(width - 1);
+            curString.setText(curString.getText().substring(0, remainder.length()) + "-");
+            put(curString);
+            strList.add(i + 1, new DCString(remainder, curString.getFGColor(), curString.getBGColor()));
+         }
       }
    }
 

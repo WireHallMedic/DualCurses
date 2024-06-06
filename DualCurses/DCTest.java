@@ -30,11 +30,20 @@ public class DCTest implements ActionListener
       dcPanel.setBackground(Color.BLACK);
       frame.add(dcPanel);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      
       for(int x = 0; x < COLUMNS; x++)
       for(int y = 0; y < ROWS; y++)
          dcPanel.setRectTile(x, y, '@', Color.CYAN.getRGB(), Color.BLACK.getRGB());
       dcPanel.setSquareTile(20, 4, '!', Color.BLACK.getRGB(), Color.WHITE.getRGB());
       dcPanel.write(5, 6, " Testing writing stuff here ", Color.YELLOW.getRGB());
+      
+      for(int y = 0; y < 10; y++)
+      {
+         dcPanel.write(10, 10 + y, "*****", Color.WHITE.getRGB());
+      }
+      DCTextArea textArea = new DCTextArea(10, 10, 5, 10);
+      textArea.write(dcPanel);
+      
       frame.setVisible(true);
       rng = new Random();
       timer = new javax.swing.Timer(16, this);
