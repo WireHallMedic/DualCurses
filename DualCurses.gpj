@@ -32,5 +32,10 @@ a0	b68	c255	f%\011DualCurses.jar	g%\011DualCurses.zip	hManifest-Version\0111.0\0
 %\011WSFont_16x16.png
 %\011DualCurses%sDCTextArea.java
 %\011DualCurses%sDCTest.java
-!35;l
+!72;l
+%\011DualCurses%sDCTextAreaTest.java
 %\011DualCurses%sDCStringTest.java
+!151;t
+jgrJUnit0xr	%\011DualCurses%sDCString.java	1717680728104:P%\011DCStringTest.java	%\011DualCurses%sDCStringTest.java	1717680728104:P%\011DCString.java	
+!31;m
+RunSelect	DualCurses.DCPalette

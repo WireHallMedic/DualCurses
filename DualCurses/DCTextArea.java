@@ -1,6 +1,8 @@
 package DualCurses;
 
 import java.awt.*;
+import java.util.*;
+import java.util.regex.*;
 
 public class DCTextArea
 {
@@ -32,6 +34,8 @@ public class DCTextArea
 	public void setFgMap(int[][] f){fgMap = f;}
 	public void setBgMap(int[][] b){bgMap = b;}
    public void setDefaultBGColor(int dbgc){defaultBGColor = dbgc;}
+   
+   public static final Pattern splitChars = Pattern.compile("^[^ \n-]*[ \n-]");
 
 
    public DCTextArea(int xOrigin, int yOrigin, int _width, int _height)
@@ -48,6 +52,11 @@ public class DCTextArea
    {
       cursorLoc[0] = 0;
       cursorLoc[1]++;
+   }
+   
+   public int remainingSpace()
+   {
+      return width - cursorLoc[0];
    }
    
    public boolean isInBounds(int x, int y)
@@ -95,6 +104,51 @@ public class DCTextArea
       }
       cursorLoc[0] = 0;
       cursorLoc[1]++;
+   }
+   
+   public Vector<DCString> split(DCString input)
+   {
+      Vector<DCString> strVect = new Vector<DCString>();
+      Matcher matcher;
+      String str = input.getText();
+      while(str.length() > 0)
+      {
+         matcher = splitChars.matcher(str);
+         if(matcher.find())
+         {
+            String result = matcher.group();
+            str = str.substring(result.length());
+            // space and dash groups contain terminating character, newlines do not
+            if(result.contains("\n"))
+            {
+               result = result.substring(0, result.length() - 1);
+               strVect.add(new DCString(result, input.getFGColor(), input.getBGColor()));
+               strVect.add(new DCString("\n"));
+            }
+            else
+            {
+               strVect.add(new DCString(result, input.getFGColor(), input.getBGColor()));
+            }
+         }
+         else
+         {
+            strVect.add(new DCString(str, input.getFGColor(), input.getBGColor()));
+            str = "";
+         }
+      }
+      return strVect;
+   }
+   
+   public void append(DCString input)
+   {
+      Vector<DCString> strList = split(input);
+      for(int i = 0; i < strList.size(); i++)
+      {
+         // room for string
+         // room for trimmed string
+         // room on next line
+         // need to hyphenate
+      }
    }
 
 }
