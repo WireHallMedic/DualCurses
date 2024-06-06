@@ -37,21 +37,22 @@ public class DCTest implements ActionListener
       dcPanel.setSquareTile(20, 4, '!', Color.BLACK.getRGB(), Color.WHITE.getRGB());
       dcPanel.write(5, 6, " Testing writing stuff here ", Color.YELLOW.getRGB());
       
-      for(int y = 0; y < 10; y++)
+      for(int y = 0; y < 12; y++)
       {
          dcPanel.write(10, 10 + y, "*****", Color.WHITE.getRGB());
          dcPanel.write(20, 10 + y, "**********", Color.WHITE.getRGB());
          dcPanel.write(35, 10 + y, "**********", Color.WHITE.getRGB());
       }
-      DCTextArea textArea = new DCTextArea(10, 10, 5, 10);
+      DCTextArea textArea = new DCTextArea(10, 12, 5, 10);
       textArea.write(dcPanel);
       
-      textArea = new DCTextArea(20, 10, 10, 10);
+      textArea = new DCTextArea(20, 12, 10, 10);
       textArea.append("The quick brown fox jumped over the lazy dog's back.");
       textArea.write(dcPanel);
       
-      textArea = new DCTextArea(35, 10, 10, 10);
-      textArea.append("Blargapottamousing.");
+      textArea = new DCTextArea(35, 12, 10, 10);
+      textArea.append("abcdefghijklmnopqrstuvwxyz");
+      //textArea.append("That's right, I said blargapottamousing.");
       textArea.write(dcPanel);
       
       frame.setVisible(true);

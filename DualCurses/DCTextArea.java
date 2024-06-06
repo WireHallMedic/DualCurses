@@ -183,8 +183,9 @@ public class DCTextArea
          {
             if(cursorLoc[0] > 0)
                finishLine();
-            String remainder = curString.getText().substring(width);
-            curString.setText(curString.getText().substring(0, remainder.length()) + "-");
+            String remainder = curString.getText().substring(width - 1);
+            curString.setText(curString.getText().substring(0, width - 1) + "-");
+            System.out.println(curString.getText() + " " + curString.getText().length());
             put(curString);
             strList.add(i + 1, new DCString(remainder, curString.getFGColor(), curString.getBGColor()));
          }
