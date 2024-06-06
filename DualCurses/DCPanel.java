@@ -6,7 +6,7 @@ import java.awt.geom.*;
 import java.awt.image.*;
 import java.awt.event.*;
 
-public class DCPanel extends JPanel implements ComponentListener, MouseMotionListener
+public class DCPanel extends JPanel implements ComponentListener, MouseMotionListener, Runnable
 {
 	private DCPalette palette;
 	private BufferedImage bigImage;
@@ -62,6 +62,17 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       changeWasMade = true;
       addComponentListener(this);
       addMouseMotionListener(this);
+      Thread thread = new Thread(this);
+      thread.start();
+   }
+   
+   public void run()
+   {
+      while(true)
+      {
+         this.repaint();
+         Thread.yield();
+      }
    }
    
    public void setPalette(String rectImageFileName, String squareImageFileName, int columns_wide, int rows_tall)

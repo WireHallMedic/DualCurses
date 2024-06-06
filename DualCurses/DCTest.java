@@ -65,7 +65,7 @@ public class DCTest implements ActionListener
       
       frame.setVisible(true);
       rng = new Random();
-      timer = new javax.swing.Timer(1, this);
+      timer = new javax.swing.Timer(1000 / 60, this);
       timer.start();
    }
    
@@ -103,7 +103,7 @@ public class DCTest implements ActionListener
       dcPanel.write(writeInsetX, 0, str);
       str.setText("" + dcPanel.getMouseLoc()[1]);
       dcPanel.write(writeInsetX, 1, str);
-      dcPanel.repaint();
+    //  dcPanel.repaint();
    }
    
    public static void main(String[] args)
