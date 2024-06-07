@@ -103,7 +103,7 @@ public class DCTest implements ActionListener
       dcPanel.write(writeInsetX, 0, str);
       str.setText("" + dcPanel.getMouseLoc()[1]);
       dcPanel.write(writeInsetX, 1, str);
-      dcPanel.repaint();
+      //dcPanel.repaint();
    }
    
    public static void main(String[] args)

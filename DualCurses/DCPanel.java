@@ -6,7 +6,7 @@ import java.awt.geom.*;
 import java.awt.image.*;
 import java.awt.event.*;
 
-public class DCPanel extends JPanel implements ComponentListener, MouseMotionListener
+public class DCPanel extends JPanel implements ComponentListener, MouseMotionListener, Runnable
 {
 	private DCPalette palette;
 	private BufferedImage bigImage;
@@ -26,6 +26,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
    private int fps;
    private long lastSecond;
    private int framesThisSecond;
+   private long millisPerFrame;
 
 
 	public DCPalette getPalette(){return palette;}
@@ -64,10 +65,34 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       emptyTile = null;
       defaultBGColor = Color.BLACK.getRGB();
       framesThisSecond = 0;
+      millisPerFrame = 1000 / 60;
       lastSecond = System.currentTimeMillis();
       changeWasMade = true;
       addComponentListener(this);
       addMouseMotionListener(this);
+      Thread thread = new Thread(this);
+      thread.start();
+   }
+   
+   public void setTargetFramerate(int fr)
+   {
+      millisPerFrame = 1000 / (long)fr;
+   }
+   
+   public void run()
+   {
+      long lastFrame = System.currentTimeMillis();
+      long curFrame;
+      while(true)
+      {
+         curFrame = System.currentTimeMillis();
+         if(curFrame - lastFrame >= millisPerFrame)
+         {
+            lastFrame = curFrame;
+            this.repaint();
+         }
+         Thread.yield();
+      }
    }
    
    @Override
