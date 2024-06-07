@@ -25,6 +25,7 @@ public class DCPalette
 	public void setColumns(int c){columns = c;}
 	public void setRows(int r){rows = r;}
 
+   // constructor
    public DCPalette(String rectImageFileName, String squareImageFileName, int columns_wide, int rows_tall)
    {
       rows = rows_tall;

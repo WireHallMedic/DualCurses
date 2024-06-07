@@ -54,6 +54,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
 	public void setRowSize(int r){rowSize = r;}
 
 
+   // constructor
    public DCPanel(int columnsWide, int rowsTall)
    {
       super();
@@ -74,11 +75,13 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       thread.start();
    }
    
+   // sets the framerate that the panel will try and maintain, in frames per second
    public void setTargetFramerate(int fr)
    {
       millisPerFrame = 1000 / (long)fr;
    }
    
+   // used to automatically repaint and calculate framerate
    public void run()
    {
       long lastFrame = System.currentTimeMillis();
@@ -95,6 +98,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       }
    }
    
+   // overridded repaint, to calculate framerate
    @Override
    public void repaint()
    {
@@ -109,6 +113,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       }
    }
    
+   // creates a palette for this panel
    public void setPalette(String rectImageFileName, String squareImageFileName, int columns_wide, int rows_tall)
    {
       palette = new DCPalette(rectImageFileName, squareImageFileName, rows_tall, columns_wide);
@@ -136,6 +141,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       bigImage.createGraphics().drawImage(scaledImage, 0, 0, null);
    }
    
+   // set a rectangular tile at location x, y
    public void setRectTile(int x, int y, int paletteX, int paletteY, int fgColor, int bgColor)
    {
       setRectTile(x, y, palette.flatten(paletteX, paletteY), fgColor, bgColor);
@@ -146,6 +152,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       placeTile(x, y, palette.getRectTile(index, fgColor, bgColor));
    }
    
+   // set a square tile at location x, y (coordinates are in rect tiles)
    public void setSquareTile(int x, int y, int paletteX, int paletteY, int fgColor, int bgColor)
    {
       setSquareTile(x, y, palette.flatten(paletteX, paletteY), fgColor, bgColor);
@@ -156,6 +163,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       placeTile(x, y, palette.getSquareTile(index, fgColor, bgColor));
    }
    
+   // write a string at x, y
    public void write(int xStart, int yStart, String str, int fgColor, int bgColor)
    {
       boolean defaultBGF = bgColor == defaultBGColor;
@@ -191,6 +199,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       bigImageYInset = (this.getHeight() - bigImageHeight) / 2;
    }
    
+   // return the mouse location in tiles (x, y)
    public int[] getMouseLoc()
    {
       int[] cl = new int[2];
@@ -199,6 +208,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       return cl;
    }
    
+   // do calculations if needed, and paint the bigImage
    @Override
    public void paint(Graphics g)
    {
@@ -220,11 +230,13 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
    public void componentMoved(ComponentEvent e){}
    public void componentShown(ComponentEvent e){}
    
+   // resize big image if panel is resized
    public void componentResized(ComponentEvent e)
    {
       changeWasMade = true;
    }
    
+   // keep track of mouse location
    public void mouseDragged(MouseEvent me){}
    public void mouseMoved(MouseEvent me)
    {
