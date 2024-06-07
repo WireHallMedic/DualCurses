@@ -9,14 +9,12 @@ package DualCurses;
 import java.awt.image.*;
 import java.awt.*;
 
-public class DCTile
+public class DCTile implements DCConstants
 {
    private boolean[][] stencilArr;
 	private int width;
 	private int height;
    private int backgroundRGB;
-   
-   public static final int DEFAULT_BACKGROUND_RGB = Color.BLACK.getRGB();
 
 
 	public boolean[][] getStencilArr(){return stencilArr;}
@@ -40,13 +38,13 @@ public class DCTile
       }
    }
    
-   public DCTile(BufferedImage img){this(img, DEFAULT_BACKGROUND_RGB);}
+   public DCTile(BufferedImage img){this(img, DEFAULT_BG_COLOR);}
    
    // get tile in specified colors
-   public BufferedImage generateImage(Color fg, Color bg)
-   {
-      return generateImage(fg.getRGB(), bg.getRGB());
-   }
+//    public BufferedImage generateImage(Color fg, Color bg)
+//    {
+//       return generateImage(fg.getRGB(), bg.getRGB());
+//    }
    
    // get tile in specified colors as RGB values
    public BufferedImage generateImage(int fg, int bg)

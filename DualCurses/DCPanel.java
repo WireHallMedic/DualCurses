@@ -6,7 +6,7 @@ import java.awt.geom.*;
 import java.awt.image.*;
 import java.awt.event.*;
 
-public class DCPanel extends JPanel implements ComponentListener, MouseMotionListener, Runnable
+public class DCPanel extends JPanel implements ComponentListener, MouseMotionListener, Runnable, DCConstants
 {
 	private DCPalette palette;
 	private BufferedImage bigImage;
@@ -67,8 +67,8 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       bigImage = null;
       smallImage = null;
       emptyTile = null;
-      defaultBGColor = Color.BLACK.getRGB();
-      defaultFGColor = Color.WHITE.getRGB();
+      defaultBGColor = DEFAULT_BG_COLOR;
+      defaultFGColor = DEFAULT_FG_COLOR;
       framesThisSecond = 0;
       millisPerFrame = 1000 / 60;
       lastSecond = System.currentTimeMillis();
