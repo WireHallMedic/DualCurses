@@ -65,7 +65,7 @@ public class DCTest implements ActionListener
       
       frame.setVisible(true);
       rng = new Random();
-      timer = new javax.swing.Timer(1000 / 60, this);
+      timer = new javax.swing.Timer(1000 / 120, this);
       timer.start();
    }
    
@@ -98,12 +98,12 @@ public class DCTest implements ActionListener
       int writeInsetX = dcPanel.getColumns() - 3;
       dcPanel.write(writeInsetX, 0, "   ", Color.WHITE.getRGB());
       dcPanel.write(writeInsetX, 1, "   ", Color.WHITE.getRGB());
-      dcPanel.write(writeInsetX - 4, 2, String.format("FPS:%3d", fps), Color.WHITE.getRGB());
+      dcPanel.write(writeInsetX - 4, 2, String.format("FPS:%3d", dcPanel.getFPS()), Color.WHITE.getRGB());
       DCString str = new DCString("" + dcPanel.getMouseLoc()[0], Color.YELLOW.getRGB(), Color.DARK_GRAY.getRGB());
       dcPanel.write(writeInsetX, 0, str);
       str.setText("" + dcPanel.getMouseLoc()[1]);
       dcPanel.write(writeInsetX, 1, str);
-    //  dcPanel.repaint();
+      dcPanel.repaint();
    }
    
    public static void main(String[] args)
