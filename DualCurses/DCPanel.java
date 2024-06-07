@@ -217,7 +217,6 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       {
          if(changeWasMade)
          {
-            calcBigImageSize();
             createBigImage(bigImageWidth, bigImageHeight);
             changeWasMade = false;
          }
@@ -233,6 +232,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
    // resize big image if panel is resized
    public void componentResized(ComponentEvent e)
    {
+      calcBigImageSize();
       changeWasMade = true;
    }
    
