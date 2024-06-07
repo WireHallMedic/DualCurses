@@ -19,9 +19,6 @@ public class DCTest implements ActionListener
       Color.LIGHT_GRAY.getRGB(), Color.MAGENTA.getRGB(), Color.ORANGE.getRGB(), Color.PINK.getRGB(), Color.RED.getRGB(), Color.WHITE.getRGB(), 
       Color.YELLOW.getRGB()};
    private Random rng;
-   private long lastSecondStart;
-   private int frames;
-   private int fps;
    
    public DCTest()
    {
@@ -65,15 +62,9 @@ public class DCTest implements ActionListener
       
       frame.setVisible(true);
       rng = new Random();
-      timer = new javax.swing.Timer(1000 / 120, this);
+      dcPanel.setTargetFramerate(250);
+      timer = new javax.swing.Timer(1000 / 60, this);
       timer.start();
-   }
-   
-   private void resetFrameCount()
-   {
-      fps = frames;
-      frames = 0;
-      lastSecondStart = System.currentTimeMillis();
    }
    
    private int randomColor()
@@ -83,9 +74,6 @@ public class DCTest implements ActionListener
    
    public void actionPerformed(ActionEvent ae)
    {
-      if(System.currentTimeMillis() - lastSecondStart >= 1000)
-         resetFrameCount();
-      frames++;
       dcPanel.setRectTile(cursorX, cursorY, rng.nextInt(256), randomColor(), randomColor());
       cursorX++;
       if(cursorX == COLUMNS)
