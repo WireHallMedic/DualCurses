@@ -13,6 +13,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
 	private BufferedImage smallImage;
    private BufferedImage emptyTile;
    private int defaultBGColor;
+   private int defaultFGColor;
 	private boolean changeWasMade;
 	private int columns;
 	private int rows;
@@ -34,6 +35,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
 	public BufferedImage getSmallImage(){return smallImage;}
    public BufferedImage getEmptyTile(){return emptyTile;}
    public int getDefaultGBColor(){return defaultBGColor;}
+   public int getDefaultFBColor(){return defaultFGColor;}
 	public boolean changeWasMade(){return changeWasMade;}
 	public int getColumns(){return columns;}
 	public int getRows(){return rows;}
@@ -47,6 +49,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
 	public void setSmallImage(BufferedImage s){smallImage = s;}
    public void setEmptyTile(BufferedImage e){emptyTile = e;}
    public void setDefaultBGColor(int rgb){defaultBGColor = rgb;}
+   public void setDefaultFGColor(int rgb){defaultFGColor = rgb;}
 	public void setChangeWasMade(boolean c){changeWasMade = c;}
 	public void setColumns(int c){columns = c;}
 	public void setRows(int r){rows = r;}
@@ -65,6 +68,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       smallImage = null;
       emptyTile = null;
       defaultBGColor = Color.BLACK.getRGB();
+      defaultFGColor = Color.WHITE.getRGB();
       framesThisSecond = 0;
       millisPerFrame = 1000 / 60;
       lastSecond = System.currentTimeMillis();
@@ -121,6 +125,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       columnSize = emptyTile.getWidth();
       rowSize = emptyTile.getHeight();
       smallImage = new BufferedImage(columns * columnSize, rows * rowSize, BufferedImage.TYPE_INT_ARGB);
+      calcBigImageSize();
       for(int x = 0; x < columns; x++)
       for(int y = 0; y < rows; y++)
          placeTile(x, y, emptyTile);
@@ -141,23 +146,25 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       bigImage.createGraphics().drawImage(scaledImage, 0, 0, null);
    }
    
-   // set a rectangular tile at location x, y
+   // set a rectangular tile at location x, y, using grid coordinates of palette
    public void setRectTile(int x, int y, int paletteX, int paletteY, int fgColor, int bgColor)
    {
       setRectTile(x, y, palette.flatten(paletteX, paletteY), fgColor, bgColor);
    }
    
+   // set a rectangular tile at location x, y, using index of palette
    public void setRectTile(int x, int y, int index, int fgColor, int bgColor)
    {
       placeTile(x, y, palette.getRectTile(index, fgColor, bgColor));
    }
    
-   // set a square tile at location x, y (coordinates are in rect tiles)
+   // set a square tile at location x, y (coordinates are in rect tiles), using grid coordinates of palette
    public void setSquareTile(int x, int y, int paletteX, int paletteY, int fgColor, int bgColor)
    {
       setSquareTile(x, y, palette.flatten(paletteX, paletteY), fgColor, bgColor);
    }
    
+   // set a square tile at location x, y (coordinates are in rect tiles), using index of palette
    public void setSquareTile(int x, int y, int index, int fgColor, int bgColor)
    {
       placeTile(x, y, palette.getSquareTile(index, fgColor, bgColor));
@@ -178,11 +185,19 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       }
    }
    
+   // write a string at x, y using default background color
    public void write(int xStart, int yStart, String str, int fgColor)
    {
       write(xStart, yStart, str, fgColor, defaultBGColor);
    }
    
+   // write a string at x, y using default background and foreground colors
+   public void write(int xStart, int yStart, String str, int fgColor)
+   {
+      write(xStart, yStart, str, fgColor, defaultBGColor);
+   }
+   
+   // write a string at x, y using a DCString object
    public void write(int xStart, int yStart, DCString str)
    {
       write(xStart, yStart, str.getText(), str.getFGColor(), str.getBGColor());
