@@ -23,6 +23,7 @@ public class DCTile
 	public int getWidth(){return width;}
 	public int getHeight(){return height;}
    
+   // constructor
    public DCTile(BufferedImage img, int bgRGB)
    {
       backgroundRGB = bgRGB;

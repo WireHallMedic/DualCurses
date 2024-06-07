@@ -192,9 +192,9 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
    }
    
    // write a string at x, y using default background and foreground colors
-   public void write(int xStart, int yStart, String str, int fgColor)
+   public void write(int xStart, int yStart, String str)
    {
-      write(xStart, yStart, str, fgColor, defaultBGColor);
+      write(xStart, yStart, str, defaultFGColor, defaultBGColor);
    }
    
    // write a string at x, y using a DCString object
