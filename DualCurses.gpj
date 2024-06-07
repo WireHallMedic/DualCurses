@@ -14,20 +14,22 @@ s#k0
 s#j0
 s#l0
 !132;u
-a0	b68	c255	f%\011DualCurses.jar	g%\011DualCurses.zip	hManifest-Version\0111.0\011Main-Class\011DualCurses.DCTest	iDualCurses.DCTest!227;g
+a0	b68	c255	f%\011DualCurses.jar	g%\011DualCurses.zip	hManifest-Version\0111.0\011Main-Class\011DualCurses.DCTest	iDualCurses.DCTest!261;g
 %\011WSFont_8x16.png
 %\011DualCurses%sDCPalette.java
 %\011DualCurses%sDCTile.java
 %\011DualCurses%sDCString.java
+%\011DualCurses%sDCConstants.java
 %\011DualCurses%sDCPanel.java
 %\011WSFont_16x16.png
 %\011DualCurses%sDCTextArea.java
 %\011DualCurses%sDCTest.java
-!227;f
+!261;f
 %\011WSFont_8x16.png
 %\011DualCurses%sDCPalette.java
 %\011DualCurses%sDCTile.java
 %\011DualCurses%sDCString.java
+%\011DualCurses%sDCConstants.java
 %\011DualCurses%sDCPanel.java
 %\011WSFont_16x16.png
 %\011DualCurses%sDCTextArea.java
@@ -36,6 +38,6 @@ a0	b68	c255	f%\011DualCurses.jar	g%\011DualCurses.zip	hManifest-Version\0111.0\0
 %\011DualCurses%sDCTextAreaTest.java
 %\011DualCurses%sDCStringTest.java
 !297;t
-jgrJUnit0xr	%\011DualCurses%sDCString.java	1717680728104:P%\011DCStringTest.java	%\011DualCurses%sDCTextAreaTest.java	1717686327453:P%\011DCTextArea.java	%\011DualCurses%sDCStringTest.java	1717680728104:P%\011DCString.java	%\011DualCurses%sDCTextArea.java	1717686327453:P%\011DCTextAreaTest.java	
+jgrJUnit0xr	%\011DualCurses%sDCString.java	1717783858066:P%\011DCStringTest.java	%\011DualCurses%sDCTextAreaTest.java	1717783858066:P%\011DCTextArea.java	%\011DualCurses%sDCStringTest.java	1717783858066:P%\011DCString.java	%\011DualCurses%sDCTextArea.java	1717783858066:P%\011DCTextAreaTest.java	
 !31;m
 RunSelect	DualCurses.DCPalette
