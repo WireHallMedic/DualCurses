@@ -37,7 +37,7 @@ public class DCTextArea
    
    public static final Pattern splitChars = Pattern.compile("^[^ \n-]*[ \n-]");
 
-
+   // constructor
    public DCTextArea(int xOrigin, int yOrigin, int _width, int _height)
    {
       width = _width;
@@ -50,23 +50,27 @@ public class DCTextArea
       defaultBGColor = Color.BLACK.getRGB();
    }
    
+   // performs a carriage return
    public void carriageReturn()
    {
       cursorLoc[0] = 0;
       cursorLoc[1]++;
    }
    
+   // returns the remaining space on current line
    public int remainingSpace()
    {
       return width - cursorLoc[0];
    }
    
+   // returns true if passed location is within the bounds of this area (ignores origins)
    public boolean isInBounds(int x, int y)
    {
       return x > 0 && x < width &&
          y > 0 && y < height;
    }
    
+   // write contents to passed DCPanel
    public void write(DCPanel panel)
    {
       while(cursorLoc[1] < height)
@@ -78,7 +82,8 @@ public class DCTextArea
       }
    }
    
-   public void put(DCString str)
+   // sets string into area, starting at cursor location
+   private void put(DCString str)
    {
       if(cursorLoc[1] >= height)
          return;
@@ -104,6 +109,7 @@ public class DCTextArea
       }
    }
    
+   // fills remaining characters on this line with spaces
    public void finishLine()
    {
       for(int x = cursorLoc[0]; x < width; x++)
@@ -117,6 +123,7 @@ public class DCTextArea
       cursorLoc[1]++;
    }
    
+   // returns a vector of the input, broken up on spaces, newlines, and hyphens
    public Vector<DCString> split(DCString input)
    {
       Vector<DCString> strVect = new Vector<DCString>();
@@ -150,11 +157,13 @@ public class DCTextArea
       return strVect;
    }
    
+   // appends a string into the area with line-wrapping, using default foreground and background colors
    public void append(String input)
    {
       append(new DCString(input));
    }
    
+   // appends a DCString into the area with line-wrapping
    public void append(DCString input)
    {
       Vector<DCString> strList = split(input);
