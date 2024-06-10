@@ -70,7 +70,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
       defaultBGColor = DEFAULT_BG_COLOR;
       defaultFGColor = DEFAULT_FG_COLOR;
       framesThisSecond = 0;
-      millisPerFrame = 1000 / 60;
+      millisPerFrame = DEFAULT_FRAME_RATE;
       lastSecond = System.currentTimeMillis();
       changeWasMade = true;
       addComponentListener(this);
