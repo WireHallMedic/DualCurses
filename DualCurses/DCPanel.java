@@ -107,7 +107,6 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
    public void repaint()
    {
       super.repaint();
-      framesThisSecond++;
       long curSecond = System.currentTimeMillis();
       if(curSecond - lastSecond >= 1000)
       {
@@ -228,6 +227,7 @@ public class DCPanel extends JPanel implements ComponentListener, MouseMotionLis
    public void paint(Graphics g)
    {
       super.paint(g);
+      framesThisSecond++;
       if(smallImage != null)
       {
          if(changeWasMade)
